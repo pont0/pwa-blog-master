@@ -1,0 +1,61 @@
+﻿@model PWABlog.ViewModels.ControleDeAcesso.ControleDeAcessoLoginViewModel
+
+
+
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Login</p>
+
+        @if (@Model.MensagemLogin != null)
+        {
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-ban"></i> Erro!</h5>
+        @Model.MensagemLogin
+    </div>}
+
+        @if (@Model.MensagemRegistro != null)
+        {
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-ban"></i> Sucesso!</h5>
+        @Model.MensagemRegistro
+    </div>}
+
+        <form action="@Url.RouteUrl("controleDeAcesso", new {Action = "Login", RedirectUrl = @Model.Destino})" method="post">
+            <div class="input-group mb-3">
+                <label for="usuario">Usuário</label>
+                <input id="usuario" name="usuario" type="email" class="form-control" placeholder="seunome@mail.com.br">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="senha">Senha</label>
+                <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <input type="hidden" name="destino" value="@Model.Destino">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <p class="mb-1">
+            <a href=" ">Esqueci a Senha</a>
+        </p>
+        <p class="mb-0">
+            <a href=" " class="text-center">Registrar</a>
+        </p>
+    </div>
+    <!-- /.login-card-body -->
